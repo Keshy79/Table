@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Complex Table</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <script defer="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="phone.css"/>
+  <style>
+    input {
+      background-color: #0dcaf0;
+      color: white;
+      height: 50px;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+    }
+    
+    #sOption {
+      background-color: #0dcaf0;
+      height: 50px;
+      border-radius: 5px;
+      border: none;
+      color: black;
+    } 
+  </style>
+</head>
+<body>
+  <div class="table text-center">
+    <h1 class="">COMPLEX MATHEMATICAL TABLE</h1>
+    <input type="number" id="inputOne" placeholder="Input number" class="mb-3" />
+    <input type="number" id="inputTwo" placeholder="Input number" class="mb-3" />
+
+    <div id="Box">
+      <select name="sOption" id="sOption" onchange="checkTable()">
+        <option value="Multiplication">Multiplication</option>
+        <option value="Addition">Addition</option>
+        <option value="Subtraction">Subtraction</option>
+        <option value="Division">Division</option>
+        <option value="Modulus">Modulus</option>
+        <!-- <option value="Even">Even Number</option> -->
+        <!-- <option value="ODD">Odd Number</option> -->
+      </select>
+
+      <button class="btn btn-info btn-lg text-dark" onclick="checkTable()">Click</button>
+    </div>
+  </div>
+  <div id="error" class="text-info text-center"></div>
+  <table id="display" class="table table-hover table-striped table-info"></table>
+
+  <script>
+    function checkTable() {
+      var one = document.getElementById("inputOne").value;
+      var two = document.getElementById("inputTwo").value;
+      var error = document.getElementById("error");
+      var display = document.getElementById("display");
+      var answer;
+      var sOption = document.getElementById("sOption").value;
+      var tableContent = "";
+
+     
+      if (one !== "" && two !== "" && one > 0 && two > 0) {
+        error.innerHTML = "";
+        display.innerHTML = "";
+
+        if (sOption === "Multiplication") {
+          for (var i = 1; i <= one; i++) {
+            tableContent += `<tr>`;
+            for (var j = 1; j <= two; j++) {
+              answer = i * j;
+              tableContent += `<td> ${j} × ${i} = ${answer} </td>`;
+            }
+            tableContent += `</tr>`;
+          }
+        } else if (sOption === "Addition") {
+          for (var i = 1; i <= one; i++) {
+            tableContent += `<tr>`;
+            for (var j = 1; j <= two; j++) {
+              answer = i + j;
+              tableContent += `<td> ${j} + ${i} = ${answer} </td>`;
+            }
+            tableContent += `</tr>`;
+          }
+        } else if (sOption === "Division") {
+          for (var i = 1; i <= one; i++) {
+            tableContent += `<tr>`;
+            for (var j = 1; j <= two; j++) {
+              var k = i / j;
+              k = k.toFixed(2);
+              tableContent += `<td> ${j} / ${i} = ${k} </td>`;
+            }
+            tableContent += `</tr>`;
+          }
+        } else if(sOption == "Subtraction") {
+          for(i = 1; i <=one; i++) {
+            tableContent += `<tr>`
+              for(j = 1; j <=two; j++) {
+                answer = i - j;
+                tableContent += `<td> ${j} - ${i} = ${answer} </td>`;
+              }
+          }
+        } else if(sOption == "Modulus") {
+          for(i = 1; i <=one; i++) {
+            tableContent += `<tr>`;
+              for(j =1; j <two; j++) {
+                answer =i % j;
+                tableContent += `<td> ${j} % ${i} = ${answer} </td>`;
+              }
+          }
+        } else if(sOption == "Even") {
+          for(i = 0; i <=100; i+=2) {
+            tableContent += `<tr>`
+              for(j =1; j <=100; j+=2) {
+                answer =i && j;
+                tableContent += `<td> ${j} && ${i} = ${answer} </td>`; 
+              }
+          }
+        }
+
+        display.innerHTML = tableContent;
+        document.getElementById("inputOne").value = "";
+        document.getElementById("inputTwo").value = "";
+        } else {
+        error.innerHTML = "Please enter valid positive numbers.";
+        display.innerHTML = "";
+        }
+        }
+
+        // even number
+    // for (i=0; i<=100 i+=2)
+
+    //  odd number
+    // for (i=1; i<=100 i+=2)
+
+//         if(valueTwo==0){
+//    error.innerHTML="even number"
+// //    alert("even Number")
+    
+//  } else{
+//     error.innerHTML="Odd Number"
+//     // alert("odd Number")
+//  }
+// }
+  </script>
+</body>
+
+</html>
